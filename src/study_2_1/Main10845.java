@@ -3,14 +3,15 @@ package study_2_1;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
-import java.util.Stack;
+import java.util.ArrayDeque;
+import java.util.Deque;
 
 /**
- * @class Main10828
+ * @class Main10845
  * @author DaHoon Bok
- * @description 백준 10828번 스택
+ * @description 백준 10845번 Queue
  */
-public class Main10828 {
+public class Main10845 {
 	
 	private static final int COMMAND = 0;
 	private static final int VALUE = 1;
@@ -19,26 +20,31 @@ public class Main10828 {
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 		int testCase = Integer.parseInt(br.readLine());
 		
+		Deque<String> queue = new ArrayDeque<String>();
 		String[] input;
-		Stack<String> stack = new Stack<String>();
+		StringBuilder sb = new StringBuilder();
 		
 		while (testCase-- > 0) {
 			input = br.readLine().split(" ");
+			
 			switch (input[COMMAND]) {
 				case "push":
-					stack.push(input[VALUE]);
+					queue.add(input[VALUE]);
 					break;
 				case "pop":
-					System.out.println((stack.isEmpty() == true) ? "-1" : stack.pop());
+					System.out.println((queue.isEmpty()) ? "-1" : queue.poll());
 					break;
 				case "size":
-					System.out.println(stack.size());
+					System.out.println(queue.size());
 					break;
 				case "empty":
-					System.out.println((stack.isEmpty() == true) ? "1" : "0");
+					System.out.println((queue.isEmpty()) ? "1" : "0");
 					break;
-				case "top":
-					System.out.println((stack.isEmpty() == true) ? "-1" : stack.peek());
+				case "front":
+					System.out.println((queue.isEmpty()) ? "-1" : queue.getFirst());
+					break;
+				case "back":
+					System.out.println((queue.isEmpty()) ? "-1" : queue.getLast());
 					break;
 			}
 		}
